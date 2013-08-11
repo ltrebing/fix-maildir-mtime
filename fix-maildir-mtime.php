@@ -30,9 +30,6 @@ function fix_file($fname) {
 		if (substr($line, 0, 9) == 'Received:') {
 			$rcvheader = TRUE;
 		} elseif (trim(substr($line, 0, 1)) !== '') {
-			if ($rcvheader) {
-				print $fname . "\n"; die;
-			}
 			$rcvheader = FALSE;
 		}
 		if ($rcvheader && preg_match('/[A-Za-z]{3},[\s]*([\d]{1,2}) ([A-Za-z]{3}) ([\d]{4}) ([\d]{2}:[\d]{2}:[\d]{2}) ([-+][\d]{4})/', $line, $matches)) {
