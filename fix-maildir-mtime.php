@@ -36,6 +36,7 @@ function fix_file($fname) {
 			$date = strtotime($matches[0]);
 			print "      Date string: " . $matches[0] . "\n";
 			print "      from " . date('Ymd-His', filemtime($fname)) . " to " . date('Ymd-His', $date) . "\n";
+			touch($fname, $date);
 			return;
 		}
 	}
