@@ -27,6 +27,9 @@ function fix_file($fname) {
 	$fhandle = fopen($fname, 'r');
 	$rcvheader = FALSE;
 	while (($line = fgets($fhandle, 4096)) !== FALSE) {
+		if (trim($line) == '') { // End of message header, stop searching
+			return;
+		}
 		if (substr($line, 0, 9) == 'Received:') {
 			$rcvheader = TRUE;
 		} elseif (trim(substr($line, 0, 1)) !== '') {
